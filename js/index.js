@@ -1,9 +1,8 @@
-// Fonction pour vérifier le format du fichier lors de la sélection dans un champ de fichier
+
+
 function verifierFormat(event) {
-    // Récupérer l'élément d'entrée (input) qui a déclenché l'événement
     const input = event.target;
 
-    // Récupérer le nom du fichier à partir de l'élément d'entrée
     const fileName = input.value;
 
     // Expression régulière pour définir les extensions de fichiers autorisées (jpg ou png)
@@ -23,32 +22,24 @@ function verifierFormat(event) {
         // Réinitialiser la valeur de l'élément d'entrée (effacer le fichier sélectionné)
         input.value = "";
 
-        // Indiquer que le format n'est pas pris en charge en retournant false
         return false;
     }
     generer(event)
-    // Si le format est pris en charge, retourner true
     return true;
 }
 
 
 function generer(event) {
-    // Empêcher le comportement par défaut du formulaire (rechargement )
     event.preventDefault(); 
 
-    // Récupérer l'élément de l'image sur la page
     var newImage = document.getElementById('new');
 
-    // Récupérer l'élément du fichier d'entrée
     var inputFile = document.getElementById('fichier');;
     
-    // Vérifier si un fichier a été sélectionné
     if (inputFile.files && inputFile.files[0]) {
 
-        // Créer un objet FileReader pour lire le contenu du fichier
         var reader = new FileReader();
 
-        // Lorsque la lecture est terminée, mettre à jour la source de l'image
         reader.onload = function (e) {
             newImage.src = e.target.result;
         };
@@ -62,7 +53,6 @@ function generer(event) {
         downloadImage(event);
 
     }
-    // S'il n'y a pas de fichier sélectionné, vous pourriez vouloir gérer cette situation
     else {
         console.error("Aucun fichier sélectionné.");
     }
